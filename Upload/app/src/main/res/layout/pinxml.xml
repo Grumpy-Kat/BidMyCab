@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <TextView
+
+            android:padding="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Enter the pin"
+
+            android:textSize="34dp" />
+
+
+            <EditText
+
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/etpin1"
+                android:hint="1234"
+                android:password="true"
+                android:textSize="50dp"
+
+                android:gravity="center"
+                />
+
+            <TextView
+
+
+                android:text="Confrim Pin"
+                android:padding="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+
+                android:textSize="34dp" />
+
+            <EditText
+
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/etpin2"
+                android:hint="1234"
+                android:password="true"
+                android:textSize="50dp"
+                android:gravity="center"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="Next"
+                android:id="@+id/bPinNext"/>
+
+
+
+</LinearLayout>
