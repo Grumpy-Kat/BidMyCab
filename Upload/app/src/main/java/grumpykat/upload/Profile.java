@@ -3,6 +3,7 @@ package grumpykat.upload;
 /**
  * Created by Venkatesh on 2/19/2015.
  */
+
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,22 +11,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,25 +47,23 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 
 
 public class Profile extends ActionBarActivity {
-    TextView tvupload,res;
-    Button pUpload,next;
+    TextView tvupload, res;
+    Button pUpload, next;
     String serverResponse1 = null;
-    SmartImageView setPic,setPic2;
+    SmartImageView setPic, setPic2;
     String selectedPath1 = "NONE";
     String driv_id;
     ProgressDialog progressDialog;
-    EditText DriverName,PhNo;
+    EditText DriverName, PhNo;
     HttpEntity resEntity;
-    String jdri_name,jdri_mobile_no,jprofile_pic_dest,jsmall_prof_pic;
+    String jdri_name, jdri_mobile_no, jprofile_pic_dest, jsmall_prof_pic;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
@@ -79,14 +72,14 @@ public class Profile extends ActionBarActivity {
 
 
         pUpload = (Button) findViewById(R.id.bUp);
-        res = (TextView)findViewById(R.id.tvres);
-        next=(Button)findViewById(R.id.bnext);
+        res = (TextView) findViewById(R.id.tvres);
+        next = (Button) findViewById(R.id.bnext);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-             driv_id = extras.getString("DriverID");
+            driv_id = extras.getString("DriverID");
 
 
-          Log.d("driver id is ", driv_id);
+            Log.d("driver id is ", driv_id);
 
         }
         new con2().execute();
@@ -124,7 +117,7 @@ public class Profile extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), FileUploadTest.class);
-                i.putExtra("TravellingId",driv_id);
+                i.putExtra("TravellingId", driv_id);
                 startActivity(i);
             }
         });
@@ -148,8 +141,7 @@ public class Profile extends ActionBarActivity {
 
             public void onClick(DialogInterface dialog, int item) {
 
-                if (options[item].equals("Take Photo"))
-                {
+                if (options[item].equals("Take Photo")) {
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(intent, 1);
                 } else if (options[item].equals("Choose from Gallery"))
@@ -181,8 +173,7 @@ public class Profile extends ActionBarActivity {
 
             MultipartEntity reqEntity = new MultipartEntity();
             reqEntity.addPart("uploadedfile1", bin1);
-            reqEntity.addPart("driv_id",new StringBody(driv_id));
-
+            reqEntity.addPart("driv_id", new StringBody(driv_id));
 
 
             post.setEntity(reqEntity);
@@ -241,7 +232,6 @@ public class Profile extends ActionBarActivity {
                 setPic.setImageURI(Uri.parse(selectedPath1));
 
 
-
             }
         }
 
@@ -297,11 +287,10 @@ public class Profile extends ActionBarActivity {
                     Log.d("serverResponse", serverResponse1);
                     JSONArray arr = new JSONArray(serverResponse1);
                     JSONObject jObj = arr.getJSONObject(0);
-                    jdri_name= jObj.getString("dri_name");
+                    jdri_name = jObj.getString("dri_name");
                     jdri_mobile_no = jObj.getString("dri_mobile_no");
                     jprofile_pic_dest = jObj.getString("profile_pic_dest");
                     jsmall_prof_pic = jObj.getString("small_prof_pic");
-
 
 
                     Log.d("jdl_no is ", jdri_name);
@@ -329,6 +318,7 @@ public class Profile extends ActionBarActivity {
         }
 
     }
+
     private static String convertStreamToString(InputStream is) {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));

@@ -13,7 +13,7 @@
             android:layout_width="fill_parent"
             android:layout_height="34dp"
             android:gravity="center"
-            android:text="Driver Details"
+            android:text="PCC"
             android:layout_weight="5"
             android:textSize="34dp" />
 
@@ -48,13 +48,13 @@
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="wrap_content"
-                    android:text="DL NO" />
+                    android:text="Reg No" />
 
                 <EditText
                     android:layout_width="0dp"
                     android:layout_weight="4"
                     android:layout_height="wrap_content"
-                    android:id="@+id/etdlno"
+                    android:id="@+id/etregno"
                     android:hint="FDL 1234/10-14" />
             </LinearLayout>
 
@@ -66,13 +66,13 @@
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="wrap_content"
-                    android:text="DL Name" />
+                    android:text="Car Ty" />
 
                 <EditText
                     android:layout_width="0dp"
                     android:layout_weight="4"
                     android:layout_height="wrap_content"
-                    android:id="@+id/etdlname"
+                    android:id="@+id/etcarty"
                     android:hint="Kumar" />
             </LinearLayout>
 
@@ -84,13 +84,13 @@
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="wrap_content"
-                    android:text="DL Address" />
+                    android:text="Board" />
 
                 <EditText
                     android:layout_width="0dp"
                     android:layout_weight="4"
                     android:layout_height="wrap_content"
-                    android:id="@+id/etdladd"
+                    android:id="@+id/etboard"
                     android:hint="dl_add" />
             </LinearLayout>
 
@@ -102,13 +102,13 @@
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="wrap_content"
-                    android:text="Expiry Dt" />
+                    android:text="city'" />
 
                 <EditText
                     android:layout_width="0dp"
                     android:layout_weight="4"
                     android:layout_height="wrap_content"
-                    android:id="@+id/etexp"
+                    android:id="@+id/etcity"
                     android:hint="12/02/2020" />
             </LinearLayout>
         </LinearLayout>
@@ -116,53 +116,47 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_height="0dp"
-            android:layout_weight="20">
-
-            <com.loopj.android.image.SmartImageView
-                android:id="@+id/Button01"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:src="@drawable/abc_btn_check_to_on_mtrl_015"
-                android:padding="2dp"
-                android:text="Get First File"></com.loopj.android.image.SmartImageView>
-
-            <com.loopj.android.image.SmartImageView
-                android:id="@+id/Button02"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:padding="2dp"
-                android:src="@drawable/abc_btn_check_to_on_mtrl_015"
-                android:text="Get Second File"></com.loopj.android.image.SmartImageView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:orientation="vertical"
             android:layout_height="0dp"
             android:gravity="center_vertical"
-            android:layout_weight="10"
+            android:layout_weight="15"
+            android:weightSum="4"
             android:layout_gravity="center_vertical">
 
-            <Button
-                android:id="@+id/upload"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="26dp"
-                android:text="Update"></Button>
 
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/doc1"
+                android:text="Doc1" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/doc2"
+                android:text="Doc2" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/doc3"
+                android:text="Doc3" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/doc4"
+                android:text="Doc4" />
         </LinearLayout>
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/bnextPcc"
-            android:text="To Pcc Screen" />
-
+            android:id="@+id/doc_upload"
+            android:text="Upload Docs" />
         <!--<LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

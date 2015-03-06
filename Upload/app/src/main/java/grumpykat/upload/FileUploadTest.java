@@ -58,7 +58,7 @@ public class FileUploadTest extends Activity implements View.OnClickListener {
     String selectedPath1 = "NONE";
     String selectedPath2 = "NONE";
     ProgressDialog progressDialog;
-    Button b3;
+    Button b3, toPcc;
     SmartImageView b1 = null, b2 = null;
     EditText e1, e2, e3, e4, e5;
     String driver_id, dl_no, dl_name, dl_add, dl_exp, driv_id;
@@ -76,16 +76,25 @@ public class FileUploadTest extends Activity implements View.OnClickListener {
         b1 = (SmartImageView) findViewById(R.id.Button01);
         b2 = (SmartImageView) findViewById(R.id.Button02);
         b3 = (Button) findViewById(R.id.upload);
-      //  e1 = (EditText) findViewById(R.id.etdriver);
+        //  e1 = (EditText) findViewById(R.id.etdriver);
         e2 = (EditText) findViewById(R.id.etdlno);
         e3 = (EditText) findViewById(R.id.etdlname);
         e4 = (EditText) findViewById(R.id.etdladd);
         e5 = (EditText) findViewById(R.id.etexp);
+        toPcc = (Button) findViewById(R.id.bnextPcc);
+
+        toPcc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(getApplicationContext(), Pcc.class);
+                startActivity(a);
+            }
+        });
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-          driver_id = extras.getString("TravellingId");
+            driver_id = extras.getString("TravellingId");
             //Log.d("driver id is ", driver_id);
         }
 
@@ -109,11 +118,11 @@ public class FileUploadTest extends Activity implements View.OnClickListener {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!(selectedPath1.trim().equalsIgnoreCase("NONE")) || !(selectedPath2.trim().equalsIgnoreCase("NONE"))||(selectedPath1.trim().equalsIgnoreCase("NONE"))||(selectedPath2.trim().equalsIgnoreCase("NONE"))) {
+                if (!(selectedPath1.trim().equalsIgnoreCase("NONE")) || !(selectedPath2.trim().equalsIgnoreCase("NONE")) || (selectedPath1.trim().equalsIgnoreCase("NONE")) || (selectedPath2.trim().equalsIgnoreCase("NONE"))) {
                     progressDialog = ProgressDialog.show(FileUploadTest.this, "", "Uploading files to server.....", false);
                     Thread thread = new Thread(new Runnable() {
                         public void run() {
-                           // driver_id = e1.getText().toString();
+                            // driver_id = e1.getText().toString();
                             dl_no = e2.getText().toString();
                             dl_name = e3.getText().toString();
                             dl_add = e4.getText().toString();
@@ -227,9 +236,9 @@ public class FileUploadTest extends Activity implements View.OnClickListener {
             FileBody bin2 = new FileBody(file2);
             MultipartEntity reqEntity = new MultipartEntity();
             if (!(selectedPath1.trim().equalsIgnoreCase("NONE")))
-            reqEntity.addPart("uploadedfile1", bin1);
-            if(!(selectedPath2.trim().equalsIgnoreCase("NONE")))
-            reqEntity.addPart("uploadedfile2", bin2);
+                reqEntity.addPart("uploadedfile1", bin1);
+            if (!(selectedPath2.trim().equalsIgnoreCase("NONE")))
+                reqEntity.addPart("uploadedfile2", bin2);
             reqEntity.addPart("driv_id", new StringBody(driver_id));
             reqEntity.addPart("dl_no", new StringBody(dl_no));
             reqEntity.addPart("dl_nme", new StringBody(dl_name));
@@ -281,7 +290,7 @@ public class FileUploadTest extends Activity implements View.OnClickListener {
         return sb.toString();
     }
 
-//Getting json with a request
+    //Getting json with a request
     public class con extends AsyncTask<String, Void, String> {
 
 
@@ -380,8 +389,7 @@ public class FileUploadTest extends Activity implements View.OnClickListener {
 
             public void onClick(DialogInterface dialog, int item) {
 
-                if (options[item].equals("Take Photo"))
-                {
+                if (options[item].equals("Take Photo")) {
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(intent, 1);
                 } else if (options[item].equals("Choose from Gallery"))
