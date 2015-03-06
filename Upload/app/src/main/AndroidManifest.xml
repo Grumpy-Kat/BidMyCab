@@ -9,7 +9,26 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".FileUploadTest"
+            android:name=".Profile"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.PROFILE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+    <activity
+        android:name=".FileUploadTest"
+        android:label="@string/app_name" >
+        <intent-filter>
+            <action android:name="android.intent.action.FILEUPLOAD" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+    </activity>
+        <activity
+            android:name=".Pin"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

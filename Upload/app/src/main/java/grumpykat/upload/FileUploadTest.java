@@ -71,19 +71,23 @@ public class FileUploadTest extends Activity implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        driv_id = "9992";
+
 
         b1 = (SmartImageView) findViewById(R.id.Button01);
         b2 = (SmartImageView) findViewById(R.id.Button02);
         b3 = (Button) findViewById(R.id.upload);
-        e1 = (EditText) findViewById(R.id.etdriver);
+      //  e1 = (EditText) findViewById(R.id.etdriver);
         e2 = (EditText) findViewById(R.id.etdlno);
         e3 = (EditText) findViewById(R.id.etdlname);
         e4 = (EditText) findViewById(R.id.etdladd);
         e5 = (EditText) findViewById(R.id.etexp);
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
-
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+          driver_id = extras.getString("TravellingId");
+            //Log.d("driver id is ", driver_id);
+        }
 
 //        final String uri = "http://referajob.in/bidacab/enqdrvdocs.php";
 //        final String body = String.format("{\"driv_id\" :9992}");
@@ -105,11 +109,11 @@ public class FileUploadTest extends Activity implements View.OnClickListener {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!(selectedPath1.trim().equalsIgnoreCase("NONE")) && !(selectedPath2.trim().equalsIgnoreCase("NONE"))) {
+                if (!(selectedPath1.trim().equalsIgnoreCase("NONE")) || !(selectedPath2.trim().equalsIgnoreCase("NONE"))||(selectedPath1.trim().equalsIgnoreCase("NONE"))||(selectedPath2.trim().equalsIgnoreCase("NONE"))) {
                     progressDialog = ProgressDialog.show(FileUploadTest.this, "", "Uploading files to server.....", false);
                     Thread thread = new Thread(new Runnable() {
                         public void run() {
-                            driver_id = e1.getText().toString();
+                           // driver_id = e1.getText().toString();
                             dl_no = e2.getText().toString();
                             dl_name = e3.getText().toString();
                             dl_add = e4.getText().toString();
@@ -213,6 +217,7 @@ public class FileUploadTest extends Activity implements View.OnClickListener {
     private void doFileUpload() {
 
         File file1 = new File(selectedPath1);
+
         File file2 = new File(selectedPath2);
         String urlString = "http://referajob.in/bidacab/driverpics/twophuplds.php";
         try {
@@ -221,7 +226,9 @@ public class FileUploadTest extends Activity implements View.OnClickListener {
             FileBody bin1 = new FileBody(file1);
             FileBody bin2 = new FileBody(file2);
             MultipartEntity reqEntity = new MultipartEntity();
+            if (!(selectedPath1.trim().equalsIgnoreCase("NONE")))
             reqEntity.addPart("uploadedfile1", bin1);
+            if(!(selectedPath2.trim().equalsIgnoreCase("NONE")))
             reqEntity.addPart("uploadedfile2", bin2);
             reqEntity.addPart("driv_id", new StringBody(driver_id));
             reqEntity.addPart("dl_no", new StringBody(dl_no));
@@ -287,7 +294,8 @@ public class FileUploadTest extends Activity implements View.OnClickListener {
 
             try {
                 HttpPost post = new HttpPost("http://referajob.in/bidacab/enqdrvdocs.php");
-                json.put("driv_id", 9992);
+
+                json.put("driv_id", driver_id);
 
 
                 StringEntity se = new StringEntity(json.toString());
@@ -309,7 +317,7 @@ public class FileUploadTest extends Activity implements View.OnClickListener {
                     jdlFr = jObj.getString("dl_fr_pic_dest");
                     jdlBk = jObj.getString("dl_bk_pic_dest");
 
-
+                    Log.d("driver_id is  ", driver_id);
                     Log.d("jdl_no is ", jdl_no);
 
                 }
@@ -328,12 +336,13 @@ public class FileUploadTest extends Activity implements View.OnClickListener {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+
             e2.setText(jdl_no);
             e3.setText(jdl_name);
             e4.setText(jdl_add);
             e5.setText(jexpiry_date);
-            b1.setImageUrl(jdlBk);
-            b2.setImageUrl(jdlFr);
+            b1.setImageUrl(jdlFr);
+            b2.setImageUrl(jdlBk);
         }
     }
 

@@ -7,42 +7,81 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    android:background="#000000"
-    tools:context=".MainActivity">
 
+    >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_height="fill_parent">
     <TextView
-        android:id="@+id/welcome"
-        android:textColor="#fff"
+        android:id="@+id/tvUp"
+
+        android:layout_width="fill_parent"
+        android:layout_height="34dp"
+        android:gravity="center"
+        android:text="Profile"
+        android:layout_weight="5"
+        android:textSize="34dp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_height="0dp"
+        android:layout_weight="20">
+    <com.loopj.android.image.SmartImageView
+        android:id="@+id/bSelectPic"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:src="@drawable/abc_btn_check_to_on_mtrl_015"
+        android:padding="2dp"
+        android:text="Get Picture"></com.loopj.android.image.SmartImageView>
+
+        <!--<com.loopj.android.image.SmartImageView
+            android:id="@+id/bSelectPic2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:src="@drawable/abc_btn_check_to_on_mtrl_015"
+            android:text="Get Second File"></com.loopj.android.image.SmartImageView>-->
+     </LinearLayout>
+
+   <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:layout_weight="30"
+            android:layout_gravity="center_vertical">
+
+        <Button
+        android:id="@+id/bUp"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="26dp"
+            android:text="Upload"
+        />
+
+        <TextView
+        android:id="@+id/tvres"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textSize="60sp"
         android:gravity="center"
-        android:fontFamily="sans-serif-thin"
-        android:text="Welcome Pet Lover!" />
-
+         />
 
     <Button
-        android:id="@+id/pic"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="80dp"
-
-
-        android:layout_width="fill_parent"
-        android:text="Send a snap of needy animal"
+        android:id="@+id/bnext"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/welcome"/>
-
-    <Button
-        android:id="@+id/adopt"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="80dp"
-
-
-        android:layout_width="fill_parent"
-        android:text="Adopt a Pet"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/welcome"/>
-
+        android:layout_gravity="center"
+        android:textSize="26dp"
+        android:text="Next"
+        />
+        </LinearLayout>
+      </LinearLayout>
 
 </LinearLayout>
